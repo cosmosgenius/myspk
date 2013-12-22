@@ -1,6 +1,5 @@
 cmake_minimum_required (VERSION 2.8)
 project (myspk)
 set(BIN spk)
-
 add_executable(${BIN} main.c)
 target_link_libraries(${BIN} -lmingw32 -lSDL2main -lSDL2  -mwindows  -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid -static-libgcc -static)
