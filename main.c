@@ -1,26 +1,40 @@
-#include <SDL.h>
-#include <stdio.h>
+#include<stdio.h>
+#include<portaudio.h>
 
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
+    PaError err;
+    int numDevices;
     int i;
-    int num_of_audio_drivers = SDL_GetNumAudioDrivers();
-    printf("Number of audio drivers:- %d", num_of_audio_drivers);
-    for (i = 0; i < num_of_audio_drivers; ++i)
+
+    printf("Port Audio version number %d\n",Pa_GetVersion());
+
+    err = Pa_Initialize();
+    if( err !=paNoError )
     {
-        const char* driver_name = SDL_GetAudioDriver(i);
-//        if(SDL_AudioInit(driver_name))
-//        {
-//            printf("Audio driver failed to initialize: %s\n", driver_name);
-//            continue;
-//        }
-//        SDL_AudioQuit();
-        printf("\nAudio Driver %d is %s\n", i , driver_name);
+        printf("PortAudio error: %s\n", Pa_GetErrorText(err));
     }
+
+    numDevices = Pa_GetDeviceCount();
+
+    if(numDevices < 0)
+    {
+         printf( "ERROR: Pa_CountDevices returned 0x%x\n", numDevices );
+    }
+    else
+    {
+        PaDeviceInfo *deviceInfo;
+        for(i = 0; i < numDevices; i++)
+        {
+            deviceInfo = Pa_GetDeviceInfo(i);
+            printf("\n%d %s",i,deviceInfo->name);
+        }
+    }
+
+    err = Pa_Terminate();
+    if( err != paNoError )
+        printf( "PortAudio error: %s\n", Pa_GetErrorText( err ) );
+
     return 0;
 }
