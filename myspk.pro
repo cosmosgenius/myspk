@@ -8,7 +8,7 @@ SOURCES += main.c
 
 
 PORTAUDIO_MINGW_ROOT=D:\Dev\libs\mingw\portaudio
-PORTAUDIO_MSVC_ROOT=D:\Dev\libs\mingw\portaudio
+PORTAUDIO_MSVC_ROOT=D:\Dev\libs\msvc\portaudio
 
 win32-g*{
     message("Compiler is mingw")
@@ -19,7 +19,7 @@ win32-g*{
 
 win32-msvc*{
     message("Compiler is Visual Studio")
-    LIBS += -L$$PORTAUDIO_MSVC_ROOT/lib/x86/
+    LIBS += -L$$PORTAUDIO_MSVC_ROOT/lib/x86
     INCLUDEPATH += $$PORTAUDIO_MSVC_ROOT/include
     DEPENDPATH += $$PORTAUDIO_MSVC_ROOT/include
 }
