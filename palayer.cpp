@@ -10,7 +10,7 @@ bool PaLayer::init()
 {
     PaError err;
     err = Pa_Initialize();
-    if (err == 0){
+    if (err == paNoError){
         return true;
     }
     return false;
