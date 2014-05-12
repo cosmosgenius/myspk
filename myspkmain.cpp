@@ -8,6 +8,7 @@ MySpkMain::MySpkMain(QWidget *parent) :
 {
     PaLayer a;
     a.init();
+    a.start();
     ui->setupUi(this);
 }
 
